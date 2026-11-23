@@ -1,6 +1,6 @@
 /* ==========================================================================
    SARAIVA LABS • Design System e Tema Oficial (theme.css)
-   Arquitetura: Fundo Claro Harmonioso + Painéis Dark Tech + Crimson Rubi
+   Arquitetura: Fundo Cinza Grafite + Painéis Dark Tech + Crimson Rubi
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap');
@@ -20,29 +20,32 @@
   --dark-bg: #0b0e17;
   --dark-surface: #121726;
   --dark-elevated: #171e31;
-  --dark-border: #1e2538;
+  --dark-border: #334155;
   --dark-border-hover: rgba(225, 29, 72, 0.55);
 
-  /* 3. Fundo Claro Harmonioso da Página */
-  --page-bg: #eef2f6;
-  --page-dot: #cbd5e1;
-  --light-surface: #ffffff;
-  --light-border: #cbd5e1;
+  /* 3. Fundo Cinza Grafite da Página e Tabelas */
+  --page-bg: #1e293b;
+  --page-dot: rgba(148, 163, 184, 0.14);
+  --light-surface: #161f30;
+  --light-border: #334155;
+  --table-row-odd: #161f30;
+  --table-row-even: #1e293b;
+  --table-row-hover: #263349;
 
   /* 4. Tipografia e Contrastes */
   --text-white: #ffffff;
-  --text-light: #f8fafc;
+  --text-light: #e2e8f0;
   --text-light-muted: #94a3b8;
   --text-dark: #090a0f;
-  --text-dark-body: #334155;
+  --text-dark-body: #cbd5e1;
 
   /* 5. Cores Semânticas Operacionais (Logística, SLA e PDV) */
   --status-ok: #10b981;
-  --status-ok-bg: rgba(16, 185, 129, 0.14);
+  --status-ok-bg: rgba(16, 185, 129, 0.15);
   --status-warn: #f59e0b;
-  --status-warn-bg: rgba(245, 158, 11, 0.14);
+  --status-warn-bg: rgba(245, 158, 11, 0.15);
   --status-info: #38bdf8;
-  --status-info-bg: rgba(56, 189, 248, 0.14);
+  --status-info-bg: rgba(56, 189, 248, 0.15);
 
   /* 6. Fontes, Bordas e Sombras */
   --font-heading: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -51,13 +54,13 @@
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 22px;
-  --shadow-card: 0 14px 30px rgba(11, 14, 23, 0.12);
-  --shadow-card-hover: 0 20px 38px rgba(11, 14, 23, 0.18);
-  --shadow-hero: 0 24px 54px rgba(11, 14, 23, 0.16);
+  --shadow-card: 0 14px 30px rgba(2, 6, 23, 0.35);
+  --shadow-card-hover: 0 20px 38px rgba(2, 6, 23, 0.48);
+  --shadow-hero: 0 24px 54px rgba(2, 6, 23, 0.45);
 }
 
 /* ==========================================================================
-   BASE E FUNDO CLARO HARMONIOSO
+   BASE E FUNDO CINZA GRAFITE
    ========================================================================== */
 
 *,
@@ -70,6 +73,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body.sl-theme,
@@ -77,7 +81,7 @@ body.sl-theme,
   background-color: var(--page-bg);
   background-image: radial-gradient(var(--page-dot) 1px, transparent 1px);
   background-size: 24px 24px;
-  color: var(--text-dark);
+  color: var(--text-light);
   font-family: var(--font-body);
   line-height: 1.6;
   min-height: 100vh;
@@ -110,7 +114,7 @@ h1, h2, h3, h4, .sl-heading {
   background: rgba(11, 14, 23, 0.95);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--dark-border);
-  box-shadow: 0 8px 28px rgba(9, 10, 15, 0.14);
+  box-shadow: 0 8px 28px rgba(2, 6, 23, 0.35);
   z-index: 100;
 }
 
@@ -404,7 +408,7 @@ h1, h2, h3, h4, .sl-heading {
 
 .sl-badge-ok {
   background: var(--status-ok-bg);
-  color: #34d399;
+  color: #6ee7b7;
   border: 1px solid rgba(16, 185, 129, 0.32);
   padding: 3px 10px;
   border-radius: 999px;
@@ -414,7 +418,7 @@ h1, h2, h3, h4, .sl-heading {
 
 .sl-badge-warn {
   background: var(--status-warn-bg);
-  color: #fbbf24;
+  color: #fcd34d;
   border: 1px solid rgba(245, 158, 11, 0.32);
   padding: 3px 10px;
   border-radius: 999px;
@@ -434,7 +438,7 @@ h1, h2, h3, h4, .sl-heading {
 
 .sl-badge-info {
   background: var(--status-info-bg);
-  color: #7dd3fc;
+  color: #93c5fd;
   border: 1px solid rgba(56, 189, 248, 0.32);
   padding: 3px 10px;
   border-radius: 999px;
@@ -443,12 +447,12 @@ h1, h2, h3, h4, .sl-heading {
 }
 
 /* ==========================================================================
-   TÍTULOS DE SEÇÃO SOBRE FUNDO CLARO
+   TÍTULOS DE SEÇÃO SOBRE FUNDO CINZA GRAFITE
    ========================================================================== */
 
 .sl-section-tag {
   display: block;
-  color: var(--rubi);
+  color: var(--rubi-light);
   font-size: 0.8rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -459,12 +463,12 @@ h1, h2, h3, h4, .sl-heading {
 .sl-section-title {
   font-size: 2rem;
   font-weight: 900;
-  color: var(--text-dark);
+  color: var(--text-white);
   margin-bottom: 12px;
 }
 
 .sl-section-desc {
-  color: var(--text-dark-body);
+  color: var(--text-light-muted);
   font-size: 1.02rem;
   max-width: 680px;
   margin-bottom: 36px;
@@ -495,6 +499,11 @@ h1, h2, h3, h4, .sl-heading {
   font-size: 0.95rem;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sl-select option {
+  background: var(--dark-surface);
+  color: var(--text-light);
 }
 
 .sl-input:focus,
@@ -533,7 +542,15 @@ h1, h2, h3, h4, .sl-heading {
 
 .sl-table td {
   padding: 14px 18px;
-  border-bottom: 1px solid var(--dark-border);
+  border-bottom: 1px solid rgba(51, 65, 85, 0.55);
+}
+
+.sl-table tbody tr:nth-child(odd) {
+  background: var(--table-row-odd);
+}
+
+.sl-table tbody tr:nth-child(even) {
+  background: var(--table-row-even);
 }
 
 .sl-table tbody tr:last-child td {
@@ -541,7 +558,7 @@ h1, h2, h3, h4, .sl-heading {
 }
 
 .sl-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--table-row-hover);
 }
 
 /* ==========================================================================
