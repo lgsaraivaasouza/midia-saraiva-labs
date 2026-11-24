@@ -1,6 +1,6 @@
 /* ==========================================================================
    SARAIVA LABS • Design System e Tema Oficial (theme.css)
-   Arquitetura: Fundo Cinza Grafite + Painéis Dark Tech + Crimson Rubi
+   Arquitetura: Dark Tech (Cinza Grafite) + Tema Claro ([data-theme="light"])
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap');
@@ -16,14 +16,21 @@
   --rubi-soft: rgba(225, 29, 72, 0.14);
   --rubi-border: rgba(225, 29, 72, 0.35);
 
-  /* 2. Painéis Modulares Dark Tech */
+  /* 2. Tokens Fixos (Sidebar, Navbar, Login e Botões de Alto Contraste) */
+  --always-dark-bg: #0b0e17;
+  --always-dark-surface: #121726;
+  --always-dark-border: #1e293b;
+  --always-white: #ffffff;
+  --always-dark-text: #090a0f;
+
+  /* 3. Painéis Modulares Dark Tech (Padrão Escuro) */
   --dark-bg: #0b0e17;
   --dark-surface: #121726;
   --dark-elevated: #171e31;
   --dark-border: #334155;
   --dark-border-hover: rgba(225, 29, 72, 0.55);
 
-  /* 3. Fundo Cinza Grafite da Página e Tabelas */
+  /* 4. Fundo Cinza Grafite da Página e Tabelas */
   --page-bg: #1e293b;
   --page-dot: rgba(148, 163, 184, 0.14);
   --light-surface: #161f30;
@@ -32,22 +39,25 @@
   --table-row-even: #1e293b;
   --table-row-hover: #263349;
 
-  /* 4. Tipografia e Contrastes */
+  /* 5. Tipografia e Contrastes */
   --text-white: #ffffff;
   --text-light: #e2e8f0;
   --text-light-muted: #94a3b8;
   --text-dark: #090a0f;
   --text-dark-body: #cbd5e1;
 
-  /* 5. Cores Semânticas Operacionais (Logística, SLA e PDV) */
+  /* 6. Cores Semânticas Operacionais (Logística, SLA e PDV) */
   --status-ok: #10b981;
   --status-ok-bg: rgba(16, 185, 129, 0.15);
+  --badge-ok-text: #6ee7b7;
   --status-warn: #f59e0b;
   --status-warn-bg: rgba(245, 158, 11, 0.15);
+  --badge-warn-text: #fcd34d;
   --status-info: #38bdf8;
   --status-info-bg: rgba(56, 189, 248, 0.15);
+  --badge-info-text: #93c5fd;
 
-  /* 6. Fontes, Bordas e Sombras */
+  /* 7. Fontes, Bordas e Sombras */
   --font-heading: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --radius-sm: 8px;
@@ -60,7 +70,51 @@
 }
 
 /* ==========================================================================
-   BASE E FUNDO CINZA GRAFITE
+   TEMA CLARO ([data-theme="light"]) — CARDS 100% CLAROS + SIDEBAR ESCURA
+   ========================================================================== */
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Superfícies Claras */
+  --page-bg: #eef2f6;
+  --page-dot: rgba(148, 163, 184, 0.28);
+  --dark-bg: #f8fafc;
+  --dark-surface: #ffffff;
+  --dark-elevated: #f1f5f9;
+  --dark-border: #cbd5e1;
+  --light-surface: #ffffff;
+  --light-border: #cbd5e1;
+
+  /* Tabelas Claras */
+  --table-row-odd: #ffffff;
+  --table-row-even: #f8fafc;
+  --table-row-hover: #e2e8f0;
+
+  /* Tipografia sobre Fundo Claro */
+  --text-white: #0f172a;
+  --text-light: #1e293b;
+  --text-light-muted: #475569;
+  --text-dark-body: #334155;
+
+  /* Badges Suaves com Texto Escuro */
+  --status-ok-bg: #dcfce7;
+  --badge-ok-text: #166534;
+  --status-warn-bg: #fef3c7;
+  --badge-warn-text: #92400e;
+  --status-info-bg: #dbeafe;
+  --badge-info-text: #1e40af;
+  --rubi-soft: rgba(225, 29, 72, 0.1);
+  --rubi-light: #be123c;
+
+  /* Sombras Suaves */
+  --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.06);
+  --shadow-card-hover: 0 14px 30px rgba(15, 23, 42, 0.1);
+  --shadow-hero: 0 18px 40px rgba(15, 23, 42, 0.1);
+}
+
+/* ==========================================================================
+   BASE E FUNDO DA PÁGINA
    ========================================================================== */
 
 *,
@@ -86,6 +140,7 @@ body.sl-theme,
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 h1, h2, h3, h4, .sl-heading {
@@ -105,7 +160,7 @@ h1, h2, h3, h4, .sl-heading {
 }
 
 /* ==========================================================================
-   CABEÇALHO E IDENTIDADE DA MARCA (NAVBAR DARK TECH)
+   CABEÇALHO E IDENTIDADE DA MARCA (NAVBAR SEMPRE DARK TECH)
    ========================================================================== */
 
 .sl-navbar {
@@ -113,7 +168,7 @@ h1, h2, h3, h4, .sl-heading {
   top: 0;
   background: rgba(11, 14, 23, 0.95);
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--dark-border);
+  border-bottom: 1px solid var(--always-dark-border);
   box-shadow: 0 8px 28px rgba(2, 6, 23, 0.35);
   z-index: 100;
 }
@@ -130,7 +185,7 @@ h1, h2, h3, h4, .sl-heading {
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: var(--text-white);
+  color: var(--always-white);
   font-family: var(--font-heading);
   font-size: 1.22rem;
   letter-spacing: 1.8px;
@@ -158,7 +213,7 @@ h1, h2, h3, h4, .sl-heading {
 
 .sl-brand-heavy {
   font-weight: 900;
-  color: var(--text-white);
+  color: var(--always-white);
 }
 
 .sl-brand-light {
@@ -167,7 +222,7 @@ h1, h2, h3, h4, .sl-heading {
 }
 
 /* ==========================================================================
-   PAINÉIS MODULARES DARK TECH (CARDS E HERO)
+   PAINÉIS MODULARES (CARDS E HERO)
    ========================================================================== */
 
 .sl-card {
@@ -177,7 +232,7 @@ h1, h2, h3, h4, .sl-heading {
   padding: 28px;
   color: var(--text-light);
   box-shadow: var(--shadow-card);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.25s ease;
 }
 
 .sl-card:hover {
@@ -193,7 +248,7 @@ h1, h2, h3, h4, .sl-heading {
   padding: 28px;
   color: var(--text-light);
   box-shadow: var(--shadow-card);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.25s ease;
 }
 
 .sl-card-surface:hover {
@@ -249,30 +304,30 @@ h1, h2, h3, h4, .sl-heading {
   background:
     radial-gradient(circle at 82% 18%, rgba(225, 29, 72, 0.22), transparent 46%),
     radial-gradient(circle at 12% 85%, rgba(190, 18, 60, 0.14), transparent 42%),
-    var(--dark-bg);
-  border: 1px solid var(--dark-border);
+    var(--always-dark-bg);
+  border: 1px solid var(--always-dark-border);
   border-top: 3px solid var(--rubi);
   border-radius: var(--radius-xl);
   padding: 56px 48px;
   box-shadow: var(--shadow-hero);
-  color: var(--text-light);
+  color: var(--always-white);
 }
 
 /* Banner de Destaque / Conversão */
 .sl-cta-panel {
   background:
     radial-gradient(circle at 50% 0%, rgba(225, 29, 72, 0.34), transparent 65%),
-    linear-gradient(135deg, #270712 0%, var(--dark-bg) 75%);
+    linear-gradient(135deg, #270712 0%, var(--always-dark-bg) 75%);
   border: 1px solid rgba(225, 29, 72, 0.45);
   border-radius: var(--radius-xl);
   padding: 48px 32px;
-  color: var(--text-white);
+  color: var(--always-white);
   box-shadow: var(--shadow-hero);
 }
 
 /* Cards de KPI Operacional (Dashboards e Torre de Controle) */
 .sl-kpi-card {
-  background: var(--dark-bg);
+  background: var(--dark-surface);
   border: 1px solid var(--dark-border);
   border-top: 3px solid var(--rubi);
   border-radius: var(--radius-md);
@@ -335,7 +390,7 @@ h1, h2, h3, h4, .sl-heading {
 /* Botão Principal Crimson Rubi */
 .sl-btn-rubi {
   background: var(--rubi);
-  color: var(--text-white);
+  color: var(--always-white);
   border-color: rgba(255, 255, 255, 0.15);
   box-shadow: 0 6px 20px var(--rubi-glow);
 }
@@ -346,11 +401,11 @@ h1, h2, h3, h4, .sl-heading {
   box-shadow: 0 10px 28px rgba(225, 29, 72, 0.45);
 }
 
-/* Botão Secundário Branco Puro (Alto Contraste sobre Dark Tech) */
+/* Botão Secundário Branco Puro */
 .sl-btn-white {
-  background: var(--text-white);
-  color: var(--text-dark);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  background: var(--always-white);
+  color: var(--always-dark-text);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .sl-btn-white:hover {
@@ -360,8 +415,8 @@ h1, h2, h3, h4, .sl-heading {
 
 /* Botão Contorno Técnico */
 .sl-btn-outline {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: transparent;
+  border-color: var(--dark-border);
   color: var(--text-white);
 }
 
@@ -408,7 +463,7 @@ h1, h2, h3, h4, .sl-heading {
 
 .sl-badge-ok {
   background: var(--status-ok-bg);
-  color: #6ee7b7;
+  color: var(--badge-ok-text);
   border: 1px solid rgba(16, 185, 129, 0.32);
   padding: 3px 10px;
   border-radius: 999px;
@@ -418,7 +473,7 @@ h1, h2, h3, h4, .sl-heading {
 
 .sl-badge-warn {
   background: var(--status-warn-bg);
-  color: #fcd34d;
+  color: var(--badge-warn-text);
   border: 1px solid rgba(245, 158, 11, 0.32);
   padding: 3px 10px;
   border-radius: 999px;
@@ -438,7 +493,7 @@ h1, h2, h3, h4, .sl-heading {
 
 .sl-badge-info {
   background: var(--status-info-bg);
-  color: #93c5fd;
+  color: var(--badge-info-text);
   border: 1px solid rgba(56, 189, 248, 0.32);
   padding: 3px 10px;
   border-radius: 999px;
@@ -447,7 +502,7 @@ h1, h2, h3, h4, .sl-heading {
 }
 
 /* ==========================================================================
-   TÍTULOS DE SEÇÃO SOBRE FUNDO CINZA GRAFITE
+   TÍTULOS DE SEÇÃO
    ========================================================================== */
 
 .sl-section-tag {
@@ -475,7 +530,7 @@ h1, h2, h3, h4, .sl-heading {
 }
 
 /* ==========================================================================
-   FORMULÁRIOS, INPUTS E TABELAS DARK TECH
+   FORMULÁRIOS, INPUTS E TABELAS
    ========================================================================== */
 
 .sl-label {
@@ -542,7 +597,7 @@ h1, h2, h3, h4, .sl-heading {
 
 .sl-table td {
   padding: 14px 18px;
-  border-bottom: 1px solid rgba(51, 65, 85, 0.55);
+  border-bottom: 1px solid var(--dark-border);
 }
 
 .sl-table tbody tr:nth-child(odd) {
@@ -559,6 +614,18 @@ h1, h2, h3, h4, .sl-heading {
 
 .sl-table tbody tr:hover {
   background: var(--table-row-hover);
+}
+
+/* Garantia de contraste nas colunas Nº NF (2ª) e Transportadora (4ª) do Mod 02 */
+table.m2-data-table tbody td:nth-child(2),
+table.m2-data-table tbody td:nth-child(2) * {
+  color: var(--text-white) !important;
+  font-weight: 700;
+}
+
+table.m2-data-table tbody td:nth-child(4),
+table.m2-data-table tbody td:nth-child(4) * {
+  color: var(--text-light) !important;
 }
 
 /* ==========================================================================
